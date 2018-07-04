@@ -1,3 +1,0 @@
-package wiki
-
-func Attach()
