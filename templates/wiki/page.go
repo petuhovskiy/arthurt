@@ -2,7 +2,7 @@ package wiki
 
 import "io/ioutil"
 
-type Page struct {
+type page struct {
 	Title string
 	Body  []byte
 }
@@ -11,16 +11,16 @@ func getPageFilename(title string) string {
 	return title + ".txt"
 }
 
-func (p *Page) save() error {
+func (p *page) save() error {
 	filename := getPageFilename(p.Title)
 	return ioutil.WriteFile(filename, p.Body, 0600)
 }
 
-func loadPage(title string) (*Page, error) {
+func loadPage(title string) (*page, error) {
 	filename := getPageFilename(title)
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
-	return &Page{Title: title, Body: body}, nil
+	return &page{Title: title, Body: body}, nil
 }
